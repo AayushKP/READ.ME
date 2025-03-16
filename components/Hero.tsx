@@ -3,14 +3,16 @@ import { cn } from "@/lib/utils";
 import { IconArrowRight } from "@tabler/icons-react";
 import Link from "next/link";
 import React from "react";
-import { motion } from "framer-motion";
+import { FeaturesSectionDemo } from "./Features";
+import { SimpleFaqsWithBackground } from "./Faq";
+import { CenteredWithLogo } from "./Footer";
 
 export function ModernHeroWithGradients() {
   return (
-    <div className="relative h-full min-h-[40rem] w-full bg-white dark:bg-black">
+    <div className="relative h-full min-h-[30rem] w-full bg-white dark:bg-black">
       <div className="relative z-20 mx-auto max-w-7xl px-4 py-10 md:px-8 lg:px-4">
         <Navbar />
-        <div className="b relative my-12 overflow-hidden rounded-3xl bg-gray-50 py-10 dark:bg-black md:py-40">
+        <div className="relative my-12 overflow-hidden rounded-3xl bg-black py-10 dark:bg-black md:py-40">
           <TopLines />
           <BottomLines />
           <SideLines />
@@ -50,6 +52,11 @@ export function ModernHeroWithGradients() {
             </div>
           </div>
         </div>
+        <FeaturesSectionDemo />
+        <SimpleFaqsWithBackground />
+      </div>
+      <div className="relative z-20 w-full">
+        <CenteredWithLogo />
       </div>
     </div>
   );
@@ -77,7 +84,7 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between">
       <Logo />
-      <div className="hidden items-center gap-6 rounded-full border border-neutral-100 bg-neutral-100 px-4 py-3 dark:border-neutral-800 dark:bg-neutral-900 lg:flex">
+      <div className="hidden items-center gap-6 rounded-full border border-neutral-100 bg-neutral-100 px-8 py-3 dark:border-neutral-800 dark:bg-neutral-900 lg:flex">
         {links.map((link) => (
           <Link
             key={link.href}
@@ -475,65 +482,33 @@ const Logo = () => {
       className="h-8 w-8 object-contain invert filter dark:invert-0"
     >
       <path
-        d="M23.0384 38H14.4499L23.0384 16.0387H30.4115L39 38H30.4115L26.6844 27.2581L23.0384 38Z"
-        fill="url(#paint0_linear_254_127)"
-      />
-      <path
-        d="M10.5608 38H1L14.936 1H25.226L29.1962 12.2989H20.2836L10.5608 38Z"
-        fill="url(#paint1_linear_254_127)"
-      />
-      <path
-        d="M23.0384 38H14.4499L23.0384 16.0387H30.4115L39 38H30.4115L26.6844 27.2581L23.0384 38Z"
-        stroke="url(#paint2_linear_254_127)"
-      />
-      <path
-        d="M10.5608 38H1L14.936 1H25.226L29.1962 12.2989H20.2836L10.5608 38Z"
-        stroke="url(#paint3_linear_254_127)"
+        d="M10 38V1H20L30 15L20 30V38H10ZM20 30L39 1H30L20 20L10 1H1L20 30Z"
+        fill="url(#kGradient)"
+        stroke="url(#kStroke)"
+        stroke-width="1.5"
       />
       <defs>
         <linearGradient
-          id="paint0_linear_254_127"
-          x1="5.27928"
-          y1="4.36364"
-          x2="31.5269"
-          y2="52.4504"
+          id="kGradient"
+          x1="20"
+          y1="1"
+          x2="20"
+          y2="38"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#ECF9FD" />
-          <stop offset="1" stopColor="#AAD3E9" stopOpacity="0" />
+          <stop stop-color="#ECF9FD" />
+          <stop offset="1" stop-color="#AAD3E9" stop-opacity="0" />
         </linearGradient>
         <linearGradient
-          id="paint1_linear_254_127"
-          x1="5.27928"
-          y1="4.36364"
-          x2="31.5269"
-          y2="52.4504"
+          id="kStroke"
+          x1="20"
+          y1="1"
+          x2="20"
+          y2="38"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#ECF9FD" />
-          <stop offset="1" stopColor="#AAD3E9" stopOpacity="0" />
-        </linearGradient>
-        <linearGradient
-          id="paint2_linear_254_127"
-          x1="8.27241"
-          y1="32.7052"
-          x2="32.6629"
-          y2="18.9511"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="white" stopOpacity="0.5" />
-          <stop offset="1" stopOpacity="0" />
-        </linearGradient>
-        <linearGradient
-          id="paint3_linear_254_127"
-          x1="8.27241"
-          y1="32.7052"
-          x2="32.6629"
-          y2="18.9511"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="white" stopOpacity="0.5" />
-          <stop offset="1" stopOpacity="0" />
+          <stop stop-color="white" stop-opacity="0.5" />
+          <stop offset="1" stop-opacity="0" />
         </linearGradient>
       </defs>
     </svg>

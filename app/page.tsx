@@ -1,5 +1,9 @@
-import { ModernHeroWithGradients } from "@/components/Background";
+import { ModernHeroWithGradients } from "@/components/Hero";
 
 export default function Home() {
-  return <ModernHeroWithGradients />;
+  return (
+    <div className="bg-white dark:bg-[#000000] gap-5 h-[100dvh] w-full flex flex-col justify-center items-center">
+      <ModernHeroWithGradients />
+    </div>
+  );
 }
