@@ -21,7 +21,7 @@ export function ModernHeroWithGradients() {
 
           <div className="relative z-20 flex flex-col items-center justify-center overflow-hidden rounded-3xl p-4 md:p-12">
             <Link
-              href="#"
+              href="/generate"
               className="flex items-center gap-1 rounded-full border border-[#404040] bg-gradient-to-b from-[#5B5B5D] to-[#262627] px-4 py-1 text-center text-sm text-white"
             >
               <span>one README at a time!</span>
@@ -38,7 +38,7 @@ export function ModernHeroWithGradients() {
             </p>
             <div className="flex flex-col items-center gap-4 py-4 sm:flex-row">
               <Link
-                href="#"
+                href="/generate"
                 className="w-40 gap-1 rounded-full border border-[#404040] bg-gradient-to-b from-[#5B5B5D] to-[#262627] px-4 py-2 text-center text-sm text-white"
               >
                 Start a project

@@ -9,12 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@octokit/core": "^6.1.4",
+    "@octokit/rest": "^21.1.1",
     "@tabler/icons-react": "^3.31.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.5.0",
     "icons-react": "^3.7.1",
     "motion": "^12.5.0",
     "next": "15.2.2",
+    "octokit": "^4.1.2",
     "postcss": "^8.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
