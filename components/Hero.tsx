@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@/lib/utils";
+import { cn } from "@/app/lib/utils";
 import { IconArrowRight } from "@tabler/icons-react";
 import Link from "next/link";
 import React from "react";

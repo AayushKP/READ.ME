@@ -6,6 +6,7 @@ interface GitHubContent {
   type: "file" | "dir";
   path: string;
   download_url?: string;
+  size?: number;
   [key: string]: any;
 }
 
@@ -18,15 +19,10 @@ export async function fetchRepoFiles(
     const owner = urlParts[urlParts.length - 2];
     const repo = urlParts[urlParts.length - 1];
 
-    console.log("Owner:", owner);
-    console.log("Repo:", repo);
-    console.log("Path:", path);
-
     const octokit = new Octokit({
       auth: process.env.GITHUB_TOKEN,
     });
 
-    // Fetch repository contents
     const response = await octokit.request(
       "GET /repos/{owner}/{repo}/contents/{path}",
       {
@@ -36,22 +32,18 @@ export async function fetchRepoFiles(
       }
     );
 
-    console.log("API Response:", response);
-
     if (!Array.isArray(response.data)) {
       throw new Error("Unexpected response format: expected an array.");
     }
 
-    return response.data as GitHubContent[];
+    // Filter files by size and type
+    const filteredFiles = response.data
+      .filter((file) => file.type === "file" && file.size && file.size < 10000) // Limit file size to 10KB
+      .slice(0, 10); // Limit to 10 files
+
+    return filteredFiles as GitHubContent[];
   } catch (error: any) {
     console.error("Error fetching repository files:", error);
-
-    if (error.status === 404) {
-      throw new Error(
-        "Repository or path not found. Ensure the repository exists and is not empty."
-      );
-    }
-
     throw new Error("Failed to fetch repository files.");
   }
 }
