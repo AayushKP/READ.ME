@@ -6,10 +6,10 @@ interface GitHubContent {
   type: "file" | "dir";
   path: string;
   download_url?: string;
-  size?: number;
   [key: string]: any;
 }
 
+// app/actions/github.ts
 export async function fetchRepoFiles(
   repoUrl: string,
   path: string = ""
@@ -19,27 +19,32 @@ export async function fetchRepoFiles(
     const owner = urlParts[urlParts.length - 2];
     const repo = urlParts[urlParts.length - 1];
 
-    const octokit = new Octokit({
-      auth: process.env.GITHUB_TOKEN,
-    });
+    const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
     const response = await octokit.request(
       "GET /repos/{owner}/{repo}/contents/{path}",
-      {
-        owner,
-        repo,
-        path,
-      }
+      { owner, repo, path }
     );
 
     if (!Array.isArray(response.data)) {
       throw new Error("Unexpected response format: expected an array.");
     }
 
-    console.log("Fetched Repository Files:", response.data); // Log fetched files
-    return response.data as GitHubContent[];
-  } catch (error: any) {
-    console.error("Error fetching repository files:", error);
+    const files: GitHubContent[] = [];
+    for (const item of response.data) {
+      if (item.type === "dir") {
+        // Recursively fetch files from subdirectories
+        const subDirFiles = await fetchRepoFiles(repoUrl, item.path);
+        files.push(...subDirFiles);
+      } else {
+        //@ts-ignore
+        files.push(item);
+      }
+    }
+
+    return files;
+  } catch (error) {
+    console.error("Error fetching files:", error);
     throw new Error("Failed to fetch repository files.");
   }
 }
