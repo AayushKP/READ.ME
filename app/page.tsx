@@ -1,4 +1,4 @@
-import { ModernHeroWithGradients } from "@/components/Hero";
+import { ModernHeroWithGradients } from "@/app/components/Hero";
 
 export default function Home() {
   return (
